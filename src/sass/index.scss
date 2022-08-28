@@ -1,2 +1,25 @@
-@import './common';
-@import './example';
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+    padding: 10px 0;
+    box-shadow: 1px 1px 10px 1px;
+}
+
+.search-input {
+    padding: 10px 5px;
+    width: 400px;
+}
+
+.search-button {
+    border: none;
+    height: 37px;
+}
