@@ -4,7 +4,8 @@ const searchButton = document.querySelector('.search-button');
 const searchInput = document.querySelector('.search-input');
 const galleryEl = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more');
-
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 
 const searchApi = new NewApiSearch;
 
@@ -29,7 +30,7 @@ function renderImages(images) {
     const markup = images.map(({ largeImageURL, webformatURL, tags, likes, views, comments, downloads }) => {
         return `
         <div class="photo-card">
-            <a href="${largeImageURL}">
+            <a href="${largeImageURL}" class="photo-link">
             <img src="${webformatURL}" alt="${tags}" loading="lazy" />
             </a>
             <div class="info">
@@ -51,7 +52,7 @@ function renderImages(images) {
                 </p>
             </div>
         </div>`
-    }).join(',');
+    }).join(',').replaceAll(',', '');
     return markup;
 }
 
@@ -73,6 +74,7 @@ async function fetchImages() {
         Notify.failure('Sorry, there are no images matching your search query. Please try again.')
     } else {
         galleryEl.insertAdjacentHTML('beforeend', renderImages(resp.hits));
+        let gallery = new SimpleLightbox('.gallery a');
     }
 }
 
